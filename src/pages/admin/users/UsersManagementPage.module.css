@@ -1,0 +1,342 @@
+/* src/pages/admin/UsersManagementPage.module.css */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    margin: 0 0 4px 0;
+}
+.subtitle {
+    color: var(--color-gray-600);
+    margin: 0;
+}
+
+.btnCreate {
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+    box-shadow: var(--shadow-sm);
+}
+.btnCreate:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.filterGroup {
+    display: flex;
+    gap: 8px;
+}
+.filterBtn {
+    padding: 8px 16px;
+    border: 1px solid var(--color-gray-300);
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.filterBtn:hover {
+    background: var(--color-gray-50);
+}
+.filterBtn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.searchInput {
+    padding: 10px 16px;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    width: 320px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.searchInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.statCard {
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.2s;
+}
+.statCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+.statValue {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+}
+.statLabel {
+    font-size: 13px;
+    color: var(--color-gray-500);
+}
+
+/* 🔹 Таблица на всю ширину */
+.cardFull {
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.tableFull {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tableFull th {
+    text-align: left;
+    padding: 14px 16px;
+    background: var(--color-gray-50);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    border-bottom: 2px solid var(--color-gray-200);
+    white-space: nowrap;
+}
+.tableFull td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-gray-100);
+    font-size: 14px;
+    vertical-align: middle;
+}
+.tableFull tr.inactive {
+    opacity: 0.6;
+    background: var(--color-gray-50);
+}
+.tableFull tr:hover:not(.inactive) {
+    background: var(--color-gray-50);
+}
+
+.id {
+    font-weight: 600;
+    color: var(--color-gray-500);
+    font-family: monospace;
+}
+
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.userName {
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+.hireDate {
+    font-size: 12px;
+    color: var(--color-gray-500);
+}
+
+.email {
+    color: var(--color-gray-600);
+    font-size: 13px;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.statusActive {
+    background: #dcfce7;
+    color: #166534;
+}
+.statusBlocked {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* 🔹 Кнопки действий */
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.btnEdit, .btnBlock, .btnUnblock, .btnDelete {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.btnEdit {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-color: var(--color-primary);
+}
+.btnEdit:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btnBlock {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #f59e0b;
+}
+.btnBlock:hover:not(:disabled) {
+    background: #f59e0b;
+    color: white;
+}
+
+.btnUnblock {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #22c55e;
+}
+.btnUnblock:hover:not(:disabled) {
+    background: #22c55e;
+    color: white;
+}
+
+.btnDelete {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #ef4444;
+}
+.btnDelete:hover:not(:disabled) {
+    background: #ef4444;
+    color: white;
+}
+
+.btnEdit:disabled,
+.btnBlock:disabled,
+.btnUnblock:disabled,
+.btnDelete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--color-gray-500);
+    font-size: 15px;
+}
+
+.loader, .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    text-align: center;
+    gap: 16px;
+    color: var(--color-gray-600);
+}
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-gray-200);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.error {
+    color: var(--color-error);
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .container { padding: 16px; }
+    .stats { grid-template-columns: 1fr; }
+    .controls { flex-direction: column; align-items: stretch; }
+    .searchInput { width: 100%; }
+    .tableFull { font-size: 13px; }
+    .tableFull th, .tableFull td { padding: 10px 12px; }
+    .actions { flex-direction: column; }
+    .btnEdit, .btnBlock, .btnUnblock, .btnDelete { width: 100%; }
+}
+
+.actions { display: flex; gap: 6px; }
+
+.btnBlock, .btnActivate, .btnDelete {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btnBlock {
+    background: #fef3c7; color: #92400e; border-color: #f59e0b;
+}
+.btnBlock:hover:not(:disabled) { background: #f59e0b; color: white; }
+
+.btnActivate {
+    background: #dcfce7; color: #166534; border-color: #22c55e;
+}
+.btnActivate:hover:not(:disabled) { background: #22c55e; color: white; }
+
+.btnDelete {
+    background: #fee2e2; color: #991b1b; border-color: #ef4444;
+}
+.btnDelete:hover:not(:disabled) { background: #ef4444; color: white; }
+
+/* Состояние disabled */
+button:disabled {
+    opacity: 0.5; cursor: not-allowed;
+}

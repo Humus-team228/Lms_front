@@ -1,0 +1,10 @@
+.container { margin-top: 24px; }
+.title { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--color-gray-800); }
+.list { display: flex; flex-direction: column; gap: 12px; }
+.comment { background: var(--color-gray-50); padding: 12px; border-radius: 8px; border-left: 3px solid var(--color-primary); }
+.meta { display: flex; gap: 8px; align-items: center; font-size: 12px; margin-bottom: 6px; }
+.author { font-weight: 600; }
+.role { color: var(--color-primary); }
+.date { color: var(--color-gray-500); margin-left: auto; }
+.text { font-size: 14px; color: var(--color-gray-700); margin: 0; }
+.empty { color: var(--color-gray-500); font-style: italic; }

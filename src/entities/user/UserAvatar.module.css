@@ -1,0 +1,12 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 600;
+}
+.sm { width: 32px; height: 32px; font-size: 12px; }
+.md { width: 48px; height: 48px; font-size: 16px; }
+.lg { width: 96px; height: 96px; font-size: 32px; }

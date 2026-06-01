@@ -1,0 +1,4 @@
+.actions { display: flex; gap: 5px; }
+.actions button { padding: 4px 8px; font-size: 11px; border-radius: 4px; cursor: pointer; border: 1px solid var(--color-gray-300); background: white; }
+.btnBlock:hover { background: var(--color-warning); color: white; border-color: var(--color-warning); }
+.btnFire:hover { background: var(--color-error); color: white; border-color: var(--color-error); }

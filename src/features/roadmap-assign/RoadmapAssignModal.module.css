@@ -1,0 +1,202 @@
+/* src/features/roadmap-assign/RoadmapAssignModal.module.css */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalContent {
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl);
+    width: 90%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.modalTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin: 0;
+}
+
+.btnClose {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-gray-500);
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.btnClose:hover {
+    color: var(--color-gray-900);
+}
+
+.modalBody {
+    padding: 24px;
+}
+
+.userInfo {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: var(--color-gray-50);
+    border-radius: 8px;
+    border-left: 3px solid var(--color-primary);
+}
+
+.userLabel {
+    font-weight: 600;
+    color: var(--color-gray-700);
+    margin-right: 8px;
+}
+
+.userNameValue {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-gray-800);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--color-white);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.loading, .empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--color-gray-500);
+    background: var(--color-gray-50);
+    border-radius: 8px;
+}
+
+.roadmapInfo {
+    background: var(--color-gray-50);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.roadmapInfo h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: var(--color-gray-700);
+}
+
+.description {
+    margin: 0 0 8px 0;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+}
+
+.stepsCount {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-gray-500);
+    font-weight: 500;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 24px;
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.btnCancel, .btnAssign {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-size: 14px;
+}
+
+.btnCancel {
+    background: white;
+    color: var(--color-gray-700);
+    border: 1px solid var(--color-gray-300);
+}
+
+.btnCancel:hover {
+    background: var(--color-gray-50);
+}
+
+.btnAssign {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btnAssign:hover:not(:disabled) {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btnAssign:disabled {
+    background: var(--color-gray-400);
+    cursor: not-allowed;
+}

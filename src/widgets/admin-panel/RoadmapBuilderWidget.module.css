@@ -1,0 +1,100 @@
+/* src/widgets/admin-panel/RoadmapBuilderWidget.module.css */
+.container { max-width: 1000px; margin: 0 auto; }
+.header { margin-bottom: 24px; }
+.title { font-size: 26px; font-weight: 700; color: var(--color-gray-900); margin-bottom: 8px; }
+.subtitle { color: var(--color-gray-600); font-size: 15px; }
+
+.error {
+    background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px;
+    margin-bottom: 16px; border: 1px solid #fecaca; text-align: center;
+}
+.success {
+    background: #dcfce7; color: #166534; padding: 12px; border-radius: 8px;
+    margin-bottom: 16px; border: 1px solid #bbf7d0; text-align: center;
+}
+
+.card {
+    background: var(--color-white); padding: 24px; border-radius: 12px;
+    box-shadow: var(--shadow-md); margin-bottom: 24px;
+}
+.cardHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.cardTitle { font-size: 18px; font-weight: 600; color: var(--color-gray-800); margin: 0; }
+
+.field { margin-bottom: 16px; }
+.field label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--color-gray-700);
+    margin-bottom: 6px;
+}
+.field input,
+.field textarea,
+.field select {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--color-gray-300);
+    border-radius: 8px; font-size: 14px; font-family: inherit;
+    transition: border-color 0.2s; box-sizing: border-box;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    outline: none; border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+.field input:disabled,
+.field textarea:disabled,
+.field select:disabled {
+    background: var(--color-gray-100); cursor: not-allowed;
+}
+
+.btnAddStep {
+    padding: 8px 16px; background: var(--color-primary); color: white;
+    border: none; border-radius: 6px; font-weight: 500; cursor: pointer;
+    transition: background 0.2s;
+}
+.btnAddStep:hover:not(:disabled) { background: var(--color-primary-dark); }
+.btnAddStep:disabled { background: var(--color-gray-400); cursor: not-allowed; }
+
+.emptySteps {
+    text-align: center; padding: 40px; color: var(--color-gray-500);
+    font-style: italic; background: var(--color-gray-50); border-radius: 8px;
+}
+
+.stepsList { display: flex; flex-direction: column; gap: 16px; }
+
+.stepCard {
+    background: var(--color-gray-50); border: 1px solid var(--color-gray-200);
+    border-radius: 10px; padding: 20px; position: relative;
+}
+.stepHeader {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--color-gray-200);
+}
+.stepNumber {
+    font-weight: 600; color: var(--color-primary-dark); font-size: 15px;
+}
+.btnRemove {
+    background: none; border: none; font-size: 18px; cursor: pointer;
+    opacity: 0.6; transition: opacity 0.2s; padding: 4px;
+}
+.btnRemove:hover:not(:disabled) { opacity: 1; }
+.btnRemove:disabled { cursor: not-allowed; }
+
+.stepBody { display: flex; flex-direction: column; gap: 12px; }
+
+.stepMeta {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    align-items: end; margin-top: 8px;
+}
+.checkbox {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 13px; color: var(--color-gray-700); user-select: none;
+}
+.checkbox input { width: 18px; height: 18px; cursor: pointer; }
+
+.actions { display: flex; justify-content: flex-end; margin-top: 24px; }
+
+.btnSave {
+    padding: 12px 32px; background: var(--color-success); color: white;
+    border: none; border-radius: 8px; font-weight: 600; font-size: 15px;
+    cursor: pointer; transition: background 0.2s;
+}
+.btnSave:hover:not(:disabled) { background: #388e3c; }
+.btnSave:disabled { background: var(--color-gray-400); cursor: not-allowed; }

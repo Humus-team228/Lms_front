@@ -1,0 +1,8 @@
+.card { background: var(--color-white); padding: 24px; border-radius: 12px; box-shadow: var(--shadow-md); }
+.subtitle { color: var(--color-gray-500); font-size: 14px; margin-bottom: 20px; }
+.chart { display: flex; flex-direction: column; gap: 16px; }
+.barContainer { display: grid; grid-template-columns: 150px 1fr 50px; gap: 10px; align-items: center; }
+.label { font-size: 14px; font-weight: 500; }
+.barWrapper { height: 12px; background: var(--color-gray-100); border-radius: 6px; overflow: hidden; }
+.bar { height: 100%; border-radius: 6px; transition: width 0.5s; }
+.value { font-size: 14px; font-weight: 700; text-align: right; }

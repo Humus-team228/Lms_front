@@ -1,0 +1,9 @@
+.widget { background: var(--color-white); padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md); }
+.title { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.row { display: flex; align-items: center; gap: 12px; padding: 10px; background: var(--color-gray-50); border-radius: 8px; }
+.row.me { background: var(--color-primary-light); border: 1px solid var(--color-primary); }
+.rank { font-weight: 700; width: 24px; text-align: center; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--color-gray-300); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+.name { flex: 1; font-weight: 500; }
+.points { font-weight: 700; color: var(--color-warning); }

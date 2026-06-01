@@ -1,0 +1,20 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gray-100);
+    padding: 20px;
+    gap: 60px;
+}
+
+.branding { max-width: 400px; }
+.branding h1 { font-size: 32px; font-weight: 800; color: var(--color-primary-dark); margin-bottom: 16px; }
+.branding p { font-size: 18px; color: var(--color-gray-600); line-height: 1.5; }
+
+.formContainer { width: 100%; max-width: 420px; }
+
+@media (max-width: 800px) {
+    .page { flex-direction: column; gap: 30px; }
+    .branding { text-align: center; }
+}

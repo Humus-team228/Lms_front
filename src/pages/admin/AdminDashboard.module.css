@@ -1,0 +1,40 @@
+.dashboard { max-width: 1400px; margin: 0 auto; }
+.header { margin-bottom: var(--spacing-8); }
+.title { font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-gray-900); margin-bottom: var(--spacing-2); }
+.subtitle { font-size: var(--font-size-base); color: var(--color-gray-600); }
+
+.kpiGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-6); margin-bottom: var(--spacing-8); }
+.kpiCard { background: var(--color-white); padding: var(--spacing-6); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); text-align: center; }
+.kpiValue { font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--spacing-2); }
+.kpiLabel { font-size: var(--font-size-sm); color: var(--color-gray-600); }
+
+.grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-6); }
+
+.card { background: var(--color-white); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); padding: var(--spacing-6); }
+.cardHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6); }
+.cardTitle { font-size: var(--font-size-xl); font-weight: 600; color: var(--color-gray-900); }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; padding: var(--spacing-3); font-size: var(--font-size-sm); font-weight: 600; color: var(--color-gray-600); border-bottom: 2px solid var(--color-gray-200); }
+.table td { padding: var(--spacing-4) var(--spacing-3); border-bottom: 1px solid var(--color-gray-100); }
+.userName { font-weight: 500; color: var(--color-gray-900); }
+
+.badge { display: inline-flex; padding: var(--spacing-1) var(--spacing-3); font-size: var(--font-size-xs); font-weight: 600; border-radius: var(--border-radius-full); }
+.badgeSuccess { background: var(--color-success-bg); color: var(--color-success-text); }
+.badgeWarning { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.badgeDanger { background: var(--color-error-bg); color: var(--color-error-text); }
+.badgeDefault { background: var(--color-gray-200); color: var(--color-gray-700); }
+
+.activityList { display: flex; flex-direction: column; gap: var(--spacing-4); }
+.activityItem { padding: var(--spacing-4); background: var(--color-gray-50); border-radius: var(--border-radius-md); border-left: 3px solid var(--color-primary); }
+.activityAction { font-weight: 500; color: var(--color-gray-900); margin-bottom: var(--spacing-2); }
+.activityMeta { display: flex; justify-content: space-between; font-size: var(--font-size-xs); color: var(--color-gray-600); }
+.activityUser { font-weight: 500; }
+
+.btnPrimary { padding: var(--spacing-2) var(--spacing-4); font-size: var(--font-size-sm); font-weight: 500; color: var(--color-white); background: var(--color-primary); border: none; border-radius: var(--border-radius-md); cursor: pointer; transition: all 0.2s; }
+.btnPrimary:hover { background: var(--color-primary-dark); }
+
+.btnSmall { padding: var(--spacing-1) var(--spacing-3); font-size: var(--font-size-xs); font-weight: 500; color: var(--color-primary); background: var(--color-primary-light); border: none; border-radius: var(--border-radius-md); cursor: pointer; transition: all 0.2s; }
+.btnSmall:hover { background: var(--color-primary); color: var(--color-white); }
+
+@media (max-width: 1024px) { .grid { grid-template-columns: 1fr; } }

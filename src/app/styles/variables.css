@@ -1,0 +1,109 @@
+/* src/styles/variables.css */
+:root {
+    /* === БРЕНД === */
+    --color-primary: #b84d6a;
+    --color-primary-dark: #963c55;
+    --color-primary-light: #f0d5df;
+    --color-primary-bg: #fdf2f5;
+
+    /* === СТАТУСЫ === */
+    --color-success: #5c8f67;
+    --color-success-bg: #e8f0ea;
+    --color-success-text: #2d4633;
+
+    --color-warning: #c4854a;
+    --color-warning-bg: #faf0e5;
+    --color-warning-text: #5c3d1f;
+
+    --color-error: #b84548;
+    --color-error-bg: #fae6e7;
+    --color-error-text: #5c2223;
+
+    --color-info: #5b7fa0;
+    --color-info-bg: #e9eff5;
+    --color-info-text: #253545;
+
+    /* === НЕЙТРАЛЬНЫЕ === */
+    --color-white: #ffffff;
+    --color-gray-50: #faf8f8;
+    --color-gray-100: #f5f0f1;
+    --color-gray-200: #ede5e7;
+    --color-gray-300: #dcd1d5;
+    --color-gray-400: #b8a8ae;
+    --color-gray-500: #8c7a81;
+    --color-gray-600: #6b5c62;
+    --color-gray-700: #4f4348;
+    --color-gray-800: #352c30;
+    --color-gray-900: #1f191b;
+
+    /* === ТИПОГРАФИКА === */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+
+    /* === ОТСТУПЫ === */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-10: 2.5rem;
+    --spacing-12: 3rem;
+
+    /* === ГРАНИЦЫ И ТЕНИ === */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px 0 rgba(31, 25, 27, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(31, 25, 27, 0.08);
+    --shadow-lg: 0 10px 15px -3px rgba(31, 25, 27, 0.08);
+
+    --z-sticky: 1020;
+}
+
+/* === ТЁМНАЯ ТЕМА === */
+[data-theme='dark'] {
+    --color-primary: #d4849b;
+    --color-primary-dark: #c46a84;
+    --color-primary-light: #3d202b;
+    --color-primary-bg: #26141a;
+
+    --color-success: #6f9e7a;
+    --color-success-bg: #1a2c1f;
+    --color-success-text: #b8d3be;
+    --color-warning: #d49e6a;
+    --color-warning-bg: #2c2317;
+    --color-warning-text: #f0d7bb;
+    --color-error: #c46a6d;
+    --color-error-bg: #2c1a1b;
+    --color-error-text: #f0c4c5;
+    --color-info: #7a9bb8;
+    --color-info-bg: #18212b;
+    --color-info-text: #c5d7e8;
+
+    --color-white: #1a1517;
+    --color-gray-50: #231d1f;
+    --color-gray-100: #2d2528;
+    --color-gray-200: #3a3134;
+    --color-gray-300: #4a3f43;
+    --color-gray-400: #695c61;
+    --color-gray-500: #8c7d83;
+    --color-gray-600: #a8999e;
+    --color-gray-700: #c4b8bc;
+    --color-gray-800: #dbd2d5;
+    --color-gray-900: #ede8ea;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}

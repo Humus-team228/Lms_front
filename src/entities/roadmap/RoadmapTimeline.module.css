@@ -1,0 +1,7 @@
+.timeline { display: flex; flex-direction: column; gap: 24px; position: relative; padding-left: 24px; }
+.item { position: relative; }
+.line {
+    position: absolute; left: -24px; top: 0; bottom: 0; width: 2px;
+    background: var(--color-gray-200); z-index: 0;
+}
+.item:last-child .line { display: none; }

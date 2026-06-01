@@ -1,0 +1,23 @@
+// src/shared/hooks/useTheme.ts
+import { useState, useEffect } from 'react';
+
+export const useTheme = () => {
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+        // Проверяем сохранённую тему или системные настройки
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved as 'light' | 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    });
+
+    useEffect(() => {
+        const root = window.document.documentElement;
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    };
+
+    return { theme, toggleTheme };
+};
