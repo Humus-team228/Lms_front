@@ -7,9 +7,9 @@ export const HeadDeptSidebar = () => (
         <NavLink to={ROUTES.HEAD_DEPT.ANALYTICS} className={({isActive}) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>
             📈 Аналитика KPI
         </NavLink>
-        <NavLink to={ROUTES.HEAD_DEPT.TEMPLATES} className={({isActive}) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>
+        { /*<NavLink to={ROUTES.HEAD_DEPT.TEMPLATES} className={({isActive}) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>
             📋 Шаблоны роадмапов
-        </NavLink>
+        </NavLink>*/}
         <NavLink to={ROUTES.HEAD_DEPT.TURNOVER} className={({isActive}) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>
             📉 Текучесть кадров
         </NavLink>

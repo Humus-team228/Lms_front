@@ -4,38 +4,92 @@ import { Layout } from '@/widgets/layout/Layout';
 import { UserAvatar } from '@/entities/user/UserAvatar';
 import { EmployeeStatusSelector } from '@/features/user-management/EmployeeStatusSelector';
 import { FeedbackHistory } from '@/features/feedback/FeedbackHistory';
+import { useQuery } from '@tanstack/react-query';
+import { userService, UserDTO } from '@/shared/api/user';
+import { progressService } from '@/shared/api/progress';
+import { BackendAssignmentDTO } from '@/shared/types/roadmap';
 import styles from './EmployeeDetailPage.module.css';
-
-const EMPLOYEE_MOCK = {
-    id: '3',
-    name: 'Сидоров Дмитрий Константинович',
-    role: 'Оператор КЦ',
-    hireDate: '2026-03-15',
-    currentStage: 'Настройка CRM',
-    overallProgress: 34,
-    status: 'TRAINING' as const,
-};
-
-const PROGRESS_STEPS = [
-    { id: 1, title: 'Вводный курс', status: 'completed', date: '2026-03-20' },
-    { id: 2, title: 'Скрипты продаж', status: 'completed', date: '2026-04-02' },
-    { id: 3, title: 'Настройка CRM', status: 'in_progress', date: '2026-05-10' },
-    { id: 4, title: 'Стажировка с наставником', status: 'locked', date: '-' },
-];
-
-const COMMENTS = [
-    { id: 'c1', author: 'Вы (Тимлид)', text: 'Обрати внимание на поле "Источник заявки" в CRM.', date: '2026-05-09', role: 'team_leader' }
-];
 
 export default function EmployeeDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [status, setStatus] = useState(EMPLOYEE_MOCK.status);
+    const userId = parseInt(id || '0', 10);
 
-    const handleStatusChange = (newStatus: typeof EMPLOYEE_MOCK.status) => {
+    // 🔹 Получение данных сотрудника
+    const { data: employee, isLoading: employeeLoading, isError: employeeError } = useQuery<UserDTO>({
+        queryKey: ['employee', userId],
+        queryFn: () => userService.getUserById(userId),
+        enabled: !!userId,
+    });
+
+    // 🔹 Получение прогресса сотрудника
+    const { data: assignments, isLoading: progressLoading, isError: progressError } = useQuery<BackendAssignmentDTO[]>({
+        queryKey: ['employee-progress', userId],
+        queryFn: () => progressService.getUserProgress(userId),
+        enabled: !!userId,
+    });
+
+    const [status, setStatus] = useState(employee?.statusCode || 'ACTIVE');
+
+    const handleStatusChange = (newStatus: string) => {
         setStatus(newStatus);
         console.log(`Статус сотрудника ${id} изменен на ${newStatus}`);
+        // TODO: Добавить API-запрос для обновления статуса
     };
+
+    // 🔹 Вычисляем общий прогресс
+    const overallProgress = assignments && assignments.length > 0
+        ? Math.round(
+            (assignments[0].steps.filter(s => s.statusCode === 'DONE').length / assignments[0].steps.length) * 100
+        )
+        : 0;
+
+    // 🔹 Преобразуем этапы в формат для отображения
+    const progressSteps = assignments && assignments.length > 0
+        ? assignments[0].steps.map(step => ({
+            id: step.stepId,
+            title: step.stepTitle,
+            status: step.statusCode === 'DONE' ? 'completed'
+                : step.statusCode === 'IN_PROGRESS' ? 'in_progress'
+                    : step.statusCode === 'REVIEW' || step.statusCode === 'IN_REVIEW' ? 'in_progress'
+                        : 'locked',
+            date: step.completionDate || '-',
+        }))
+        : [];
+
+    //  Собираем все комментарии из всех этапов
+    const allComments = assignments?.flatMap(assignment =>
+        assignment.steps.flatMap(step =>
+            step.comments.map(comment => ({
+                id: String(comment.commentId),
+                author: comment.authorName,
+                text: comment.commentText,
+                date: comment.createdAt,
+                role: 'team_leader' as const,
+            }))
+        )
+    ) || [];
+
+    if (employeeLoading || progressLoading) {
+        return (
+            <Layout>
+                <div className={styles.loader}>
+                    <div className={styles.spinner} />
+                    Загрузка данных сотрудника...
+                </div>
+            </Layout>
+        );
+    }
+
+    if (employeeError || progressError || !employee) {
+        return (
+            <Layout>
+                <div className={styles.error}>
+                    ️ Не удалось загрузить данные сотрудника. Попробуйте обновить страницу.
+                </div>
+            </Layout>
+        );
+    }
 
     return (
         <Layout>
@@ -44,14 +98,16 @@ export default function EmployeeDetailPage() {
 
                 <div className={styles.headerCard}>
                     <div className={styles.profileInfo}>
-                        <UserAvatar name={EMPLOYEE_MOCK.name} size="lg" />
+                        <UserAvatar name={employee.fullName} size="lg" />
                         <div>
-                            <h1 className={styles.name}>{EMPLOYEE_MOCK.name}</h1>
-                            <p className={styles.meta}>{EMPLOYEE_MOCK.role} • Принят: {new Date(EMPLOYEE_MOCK.hireDate).toLocaleDateString('ru-RU')}</p>
+                            <h1 className={styles.name}>{employee.fullName}</h1>
+                            <p className={styles.meta}>
+                                {employee.roleName} • Принят: {new Date(employee.hireDate).toLocaleDateString('ru-RU')}
+                            </p>
                             <div className={styles.progressMini}>
-                                <span>Общий прогресс: {EMPLOYEE_MOCK.overallProgress}%</span>
+                                <span>Общий прогресс: {overallProgress}%</span>
                                 <div className={styles.miniBarWrapper}>
-                                    <div className={styles.miniBar} style={{ width: `${EMPLOYEE_MOCK.overallProgress}%` }} />
+                                    <div className={styles.miniBar} style={{ width: `${overallProgress}%` }} />
                                 </div>
                             </div>
                         </div>
@@ -62,22 +118,38 @@ export default function EmployeeDetailPage() {
                 <div className={styles.grid}>
                     <div className={styles.card}>
                         <h3 className={styles.cardTitle}>Траектория обучения</h3>
-                        <div className={styles.stepsList}>
-                            {PROGRESS_STEPS.map(step => (
-                                <div key={step.id} className={`${styles.step} ${styles[step.status]}`}>
-                                    <div className={styles.stepIcon}>{step.status === 'completed' ? '✓' : step.status === 'in_progress' ? '●' : '○'}</div>
-                                    <div className={styles.stepInfo}>
-                                        <span className={styles.stepTitle}>{step.title}</span>
-                                        <span className={styles.stepDate}>{step.date !== '-' ? new Date(step.date).toLocaleDateString('ru-RU') : 'Ожидает'}</span>
+                        {progressSteps.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                У сотрудника пока нет назначенных этапов обучения
+                            </div>
+                        ) : (
+                            <div className={styles.stepsList}>
+                                {progressSteps.map(step => (
+                                    <div key={step.id} className={`${styles.step} ${styles[step.status]}`}>
+                                        <div className={styles.stepIcon}>
+                                            {step.status === 'completed' ? '✓' : step.status === 'in_progress' ? '●' : '○'}
+                                        </div>
+                                        <div className={styles.stepInfo}>
+                                            <span className={styles.stepTitle}>{step.title}</span>
+                                            <span className={styles.stepDate}>
+                                                {step.date !== '-' ? new Date(step.date).toLocaleDateString('ru-RU') : 'Ожидает'}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     <div className={styles.card}>
                         <h3 className={styles.cardTitle}>История обратной связи</h3>
-                        <FeedbackHistory comments={COMMENTS} />
+                        {allComments.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                Обратная связь пока не предоставлена
+                            </div>
+                        ) : (
+                            <FeedbackHistory comments={allComments} />
+                        )}
                     </div>
                 </div>
             </div>

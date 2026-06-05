@@ -154,4 +154,18 @@ export const userService = {
 
         return res.json();
     },
+
+    async getUserById(userId: number): Promise<UserDTO> {
+        const res = await fetch(`${API_CONFIG.BASE_URL}/api/users/${userId}`, {
+            method: 'GET',
+            headers: getHeaders(),
+            signal: AbortSignal.timeout(API_CONFIG.TIMEOUT),
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: Не удалось загрузить пользователя`);
+        }
+
+        return res.json();
+    },
 };
